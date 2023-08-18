@@ -5,7 +5,7 @@ import { data } from '../../../../utils/data';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 
-const BunsSelect = (({openPopup}) => {
+const BunsSelect = (({openPopup, ingredients}) => {
 
     return(
         <section>

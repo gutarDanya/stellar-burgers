@@ -7,10 +7,13 @@ import BunsSelect from './BunsSelect/BunsSelect';
 import Souses from './Souses/Souses';
 import Main from './Main/Main';
 import ModalInfoIngredients from './ModalInfoIngredients/ModalInfoIngredients';
+import { useSelector } from 'react-redux';
 
 function BurgerIngredients () {
 
-    const [modalActive, setModalActive] = React.useState(false)
+    const [modalActive, setModalActive] = React.useState(false);
+
+
 
 
     function closePopupByKey (evt) {
@@ -24,8 +27,13 @@ function BurgerIngredients () {
 
         return () => {
             document.removeEventListener('keydown', closePopupByKey)
-        }
+        };
+
     }, [])
+
+
+    //const ingredients = useSelector(store => store.apiReducer.ingredientsData)
+
 
     const openPopup = () => {
         setModalActive(true);
@@ -35,7 +43,7 @@ function BurgerIngredients () {
         <section className={styles.burgerIngredients}>
             <h1 className={styles.text}>Соберите бургер</h1>
             <Navigation />
-            <BunsSelect openPopup={openPopup} />
+            <BunsSelect openPopup={openPopup}/>
             <Souses openPopup={openPopup}/>
             <Main openPopup={openPopup}/>
             <ModalInfoIngredients active={modalActive} setActive={setModalActive}/>
