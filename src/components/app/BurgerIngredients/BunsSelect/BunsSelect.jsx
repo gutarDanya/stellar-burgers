@@ -11,11 +11,11 @@ const BunsSelect = (({openPopup, ingredients}) => {
         <section>
             <h3 className={styles.title}>Булки</h3>
             <nav className={styles.container}>
-            {data.map((ingredient) => {
+            {ingredients && ingredients.length > 0 && ingredients.map((ingredient) => {
                 if (ingredient.type === 'bun') {
                     return (
                         <div className={styles.ingredient}
-                        onClick={openPopup}>
+                        onClick={() => openPopup(ingredient)}>
                             {ingredient.name === 'Краторная булка N-200i'
                             ? <Counter count={1} size='default' extraClass='m-1'/>
                             : null}

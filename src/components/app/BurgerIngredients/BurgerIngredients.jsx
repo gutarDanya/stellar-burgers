@@ -9,9 +9,10 @@ import Main from './Main/Main';
 import ModalInfoIngredients from './ModalInfoIngredients/ModalInfoIngredients';
 import { useSelector } from 'react-redux';
 
-function BurgerIngredients () {
+function BurgerIngredients ({ingredients}) {
 
     const [modalActive, setModalActive] = React.useState(false);
+    const [currentIngredient, setCurrentIngredient] = React.useState({})
 
 
 
@@ -35,18 +36,20 @@ function BurgerIngredients () {
     //const ingredients = useSelector(store => store.apiReducer.ingredientsData)
 
 
-    const openPopup = () => {
+    const openPopup = (ingredient) => {
         setModalActive(true);
+
+        setCurrentIngredient(ingredient)
     }
 
     return (
         <section className={styles.burgerIngredients}>
             <h1 className={styles.text}>Соберите бургер</h1>
             <Navigation />
-            <BunsSelect openPopup={openPopup}/>
-            <Souses openPopup={openPopup}/>
-            <Main openPopup={openPopup}/>
-            <ModalInfoIngredients active={modalActive} setActive={setModalActive}/>
+            <BunsSelect openPopup={openPopup} ingredients={ingredients}/>
+            <Souses openPopup={openPopup} ingredients={ingredients}/>
+            <Main openPopup={openPopup} ingredients={ingredients}/>
+            <ModalInfoIngredients active={modalActive} setActive={setModalActive} usedIngredient={currentIngredient}/>
         </section>
     )
 }

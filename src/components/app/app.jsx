@@ -5,7 +5,7 @@ import AppHeader from './AppHeader/AppHeader.jsx'
 import BurgerIngredients from "./BurgerIngredients/BurgerIngredients";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 import { combineReducers } from "@reduxjs/toolkit";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { createStore } from "redux";
 import { apiReducer } from "../services/reducers/apiReducer";
 import { constuctorIngredientsReducer } from "../services/actions/ingredientsConstructorAction";
@@ -47,7 +47,7 @@ function App() {
         <>
           <AppHeader />
           <div className={styles.main}>
-            <BurgerIngredients />
+            <BurgerIngredients ingredients={ingredients}/>
             <BurgerConstructor />
           </div>
         </>

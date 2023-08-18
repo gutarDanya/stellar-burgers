@@ -6,16 +6,16 @@ import { data } from '../../../../utils/data';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 
-function Main({openPopup}) {
+function Main({openPopup, ingredients}) {
     return (
         <section>
             <h3 className={styles.title}>Начинка</h3>
             <nav className={styles.container}>
-                {data.map((filling) => {
+                {ingredients && ingredients.length > 0 && ingredients.map((filling) => {
                     if (filling.type === 'main') {
                         return (
                             <div  className={styles.ingredient}
-                            onClick={openPopup}>
+                            onClick={() => openPopup(filling)}>
                                 {filling.name === 'Мясо бессмертных моллюсков Protostomia' || filling.name === 'Плоды Фалленианского дерева'
                                 ? <Counter count={1} size="default" extraClass="m-1" />
                                 : null}

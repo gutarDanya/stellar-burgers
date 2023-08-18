@@ -6,16 +6,16 @@ import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-function Souses ({openPopup}) {
+function Souses ({openPopup, ingredients}) {
     return (
         <section>
             <h3 className={styles.title}>Соусы</h3>
             <nav className={styles.container}>
-            {data.map((souses) => {
+            {ingredients && ingredients.length > 0 && ingredients.map((souses) => {
                 if (souses.type === 'sauce') {
                     return (
                         <div className={styles.ingredient}
-                        onClick={openPopup}>
+                        onClick={() => openPopup(souses)}>
                             {souses.name === 'Соус традиционный галактический'
                             ? <Counter count={1} size='default' extraClass='m-1' />
                             : null}

@@ -6,7 +6,7 @@ import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import InfoOfIngridient from './InfoOfIngredient/InfoOfIngredinet';
 
-const ModalInfoIngredients = ({ active, setActive }) => {
+const ModalInfoIngredients = ({ active, setActive, usedIngredient }) => {
     const closePopup = () => {
         setActive(false)
     }
@@ -22,8 +22,8 @@ const ModalInfoIngredients = ({ active, setActive }) => {
                     <CloseIcon
                         onClick={closePopup}/>
                 </div>
-                <img src={data[2].image_large} alt={data[2].name} />
-                <InfoOfIngridient ingredient={data} />
+                <img src={usedIngredient.image_large} alt={usedIngredient.name} />
+                <InfoOfIngridient ingredient={usedIngredient} />
             </section>
         </div>
     )
