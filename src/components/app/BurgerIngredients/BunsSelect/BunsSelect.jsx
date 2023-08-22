@@ -1,11 +1,14 @@
-import React from 'react';
-
+import React, {useEffect}  from 'react';
 import styles from './BunsSelect.module.css';
 import { data } from '../../../../utils/data';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { getData } from '../../../services/reducers/apiReducer';
 
-const BunsSelect = (({openPopup, ingredients}) => {
+const BunsSelect = (({openPopup}) => {
+
+    const ingredients = useSelector(state => state.apiReducer.ingredientData[0])
 
     return(
         <section>

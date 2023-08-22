@@ -1,20 +1,24 @@
-import React from 'react'
-import { CURRENT_INGREDIENTS_TO_MODAL } from '../actions/currentIngredientsToModalAction';
-import { data } from '../../../utils/data';
+import React from "react";
+import { GET_CURRENT_INGREDIENT_TO_MODAL, REMOVE_CUURENT_INGREDIENT_FROM_MODAL } from '../actions/currentIngredientsToModalAction'
 
 const initialState = {
-    ingredientsData: []
+    currentIngredient: {}
 }
 
-export const currentIngredientsReudecer = (state = initialState, action) => {
+export const currentIngredientReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CURRENT_INGREDIENTS_TO_MODAL: {
+        case GET_CURRENT_INGREDIENT_TO_MODAL : {
             return {
                 ...state,
-                ingredientsData: data
-                //ЗДЕСЬ ДОЛЖНЫ ПОЯВЛЯТСЯ ДАННЫЕ ТЕКУЩЕГО ПРОСМАТРИВАЕМОГО ИНГРЕДИЕНТА
+                currentIngredient: action.payload
             }
         }
-        default: return state
+        case REMOVE_CUURENT_INGREDIENT_FROM_MODAL : {
+            return {
+                ...state,
+                currentIngredient: {}
+            }
+        }
+        default : return state
     }
 }

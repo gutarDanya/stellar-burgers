@@ -5,11 +5,19 @@ import { data } from '../../../../utils/data';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import InfoOfIngridient from './InfoOfIngredient/InfoOfIngredinet';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeCurrentIngredientGenerator } from '../../../services/actions/currentIngredientsToModalAction';
 
-const ModalInfoIngredients = ({ active, setActive, usedIngredient }) => {
+const ModalInfoIngredients = ({ active, setActive }) => {
+
+    const dispatch = useDispatch();
+
     const closePopup = () => {
         setActive(false)
+        dispatch(removeCurrentIngredientGenerator())
     }
+
+    const usedIngredient = useSelector(store => store.currentIngredientReducer.currentIngredient)
     return (
         <div className={active
             ? styles.modal

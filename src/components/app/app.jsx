@@ -4,44 +4,24 @@ import { data } from "../../utils/data";
 import AppHeader from './AppHeader/AppHeader.jsx'
 import BurgerIngredients from "./BurgerIngredients/BurgerIngredients";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
-import { combineReducers } from "@reduxjs/toolkit";
-import { Provider, useDispatch } from "react-redux";
-import { createStore } from "redux";
-import { apiReducer } from "../services/reducers/apiReducer";
-import { constuctorIngredientsReducer } from "../services/actions/ingredientsConstructorAction";
-import { currentIngredientsReudecer } from "../services/reducers/currentIngredientsToModalReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { getData } from "../services/reducers/apiReducer";
+
 import React from 'react'
 import { useEffect, useState } from "react";
 
-const rootReducer = combineReducers({
-  apiReducer,
-  constuctorIngredientsReducer,
-  currentIngredientsReudecer,
-  
-})
-
-
-const store = createStore(rootReducer)
 
 function App() {
 
-  const [ingredients, setIngredients] = useState([])
+  const dispatch = useDispatch();
+  const ingredients = useSelector(store => store.apiReducer.ingredientData)
 
   useEffect(() => {
-    const getIngredients = () => {
-    fetch(`https://norma.nomoreparties.space/api/ingredients`)
-    .then(res => res.json())
-    .then(data => {setIngredients(Array.from(data.data))})
-    .catch(err => console.log(`ошибка получения ингредиентов: ${err.status}`))
-    }
-
-    getIngredients()
-    console.log(ingredients)
-  }, [])
+    dispatch(getData())
+}, [])
 
 
   return (
-    <Provider store={store}>
     <div className={styles.app}>
       <pre className={styles.container}>
         <>
@@ -53,7 +33,6 @@ function App() {
         </>
       </pre>
     </div>
-    </Provider>
   );
 }
 

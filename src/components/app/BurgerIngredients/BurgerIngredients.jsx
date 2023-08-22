@@ -7,15 +7,14 @@ import BunsSelect from './BunsSelect/BunsSelect';
 import Souses from './Souses/Souses';
 import Main from './Main/Main';
 import ModalInfoIngredients from './ModalInfoIngredients/ModalInfoIngredients';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { GET_CURRENT_INGREDIENT_TO_MODAL, getCurrentIngredientGenerator } from '../../services/actions/currentIngredientsToModalAction';
 
 function BurgerIngredients ({ingredients}) {
 
     const [modalActive, setModalActive] = React.useState(false);
-    const [currentIngredient, setCurrentIngredient] = React.useState({})
 
-
-
+    const dispatch = useDispatch();
 
     function closePopupByKey (evt) {
         if (evt.key === 'Escape') {
@@ -33,23 +32,25 @@ function BurgerIngredients ({ingredients}) {
     }, [])
 
 
-    //const ingredients = useSelector(store => store.apiReducer.ingredientsData)
-
-
     const openPopup = (ingredient) => {
         setModalActive(true);
 
-        setCurrentIngredient(ingredient)
+        dispatch({type: GET_CURRENT_INGREDIENT_TO_MODAL, payload: ingredient})
     }
+
+    const currentIngredient = useSelector(store => store.currentIngredientReducer.currentIngredient);
+
+    console.log(currentIngredient);
+
 
     return (
         <section className={styles.burgerIngredients}>
             <h1 className={styles.text}>Соберите бургер</h1>
             <Navigation />
-            <BunsSelect openPopup={openPopup} ingredients={ingredients}/>
-            <Souses openPopup={openPopup} ingredients={ingredients}/>
-            <Main openPopup={openPopup} ingredients={ingredients}/>
-            <ModalInfoIngredients active={modalActive} setActive={setModalActive} usedIngredient={currentIngredient}/>
+            <BunsSelect openPopup={openPopup}/>
+            <Souses openPopup={openPopup} />
+            <Main openPopup={openPopup} />
+            <ModalInfoIngredients active={modalActive} setActive={setModalActive}/>
         </section>
     )
 }

@@ -5,8 +5,12 @@ import { data } from '../../../../utils/data';
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useSelector } from 'react-redux';
 
-function Souses ({openPopup, ingredients}) {
+function Souses ({openPopup}) {
+
+    const ingredients = useSelector(store => store.apiReducer.ingredientData[0])
+
     return (
         <section>
             <h3 className={styles.title}>Соусы</h3>

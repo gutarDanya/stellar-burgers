@@ -4,11 +4,16 @@ import InfoOfOrder from './InfoOfOrder/InfoOfOrder';
 
 import styles from './BurgerConstructor.module.css';
 import { data } from '../../utils/data';
+import { useSelector } from 'react-redux';
 
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 function BurgerConstructor() {
+
+    const ingredients = useSelector(state => state.apiReducer.ingredientData[0])
+
+    console.log(ingredients)
     return (
         <nav className={styles.container}>
             <div className={styles.ingredients}>
