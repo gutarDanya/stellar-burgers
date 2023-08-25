@@ -1,17 +1,37 @@
 import React from 'react';
 
 import styles from './ModalInfoOfOrder.module.css';
-
+import { useDispatch, useSelector } from 'react-redux';
+import {CLOSE_MODAL_WINDOW} from '../../../services/actions/orderedIngredientsAction';
 import done from '../../../../images/done.png'
 
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 
-function ModalInfoOfOrder ({active, setActive}) {
+function ModalInfoOfOrder () {
+
+    const dispatch = useDispatch();
+
+    const active = useSelector(state => state.orderedIngredientsReducer.modalOpened)
+
+    function closePopupByKey (evt) {
+        if (evt.key === 'Escape') {
+            dispatch({type: CLOSE_MODAL_WINDOW})
+        }
+    }
+
+    React.useEffect(() => {
+        document.addEventListener('keydown', closePopupByKey);
+
+        return () => {
+            document.removeEventListener('keydown', closePopupByKey)
+        }
+    }, [])
 
     const closePopup = () => {
-        setActive(false)
+        dispatch({type: CLOSE_MODAL_WINDOW})
     }
+
     return (
         <div className={active
         ? styles.modal

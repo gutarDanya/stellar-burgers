@@ -9,8 +9,11 @@ import Main from './Main/Main';
 import ModalInfoIngredients from './ModalInfoIngredients/ModalInfoIngredients';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_CURRENT_INGREDIENT_TO_MODAL, getCurrentIngredientGenerator } from '../../services/actions/currentIngredientsToModalAction';
+import { useDrag } from 'react-dnd';
+import { OPEN_MODAL_WINDOW } from '../../services/actions/orderedIngredientsAction';
 
 function BurgerIngredients ({ingredients}) {
+
 
     const [modalActive, setModalActive] = React.useState(false);
 
@@ -33,9 +36,8 @@ function BurgerIngredients ({ingredients}) {
 
 
     const openPopup = (ingredient) => {
-        setModalActive(true);
-
         dispatch({type: GET_CURRENT_INGREDIENT_TO_MODAL, payload: ingredient})
+        dispatch({type: OPEN_MODAL_WINDOW})
     }
 
     const currentIngredient = useSelector(store => store.currentIngredientReducer.currentIngredient);
@@ -50,7 +52,7 @@ function BurgerIngredients ({ingredients}) {
             <BunsSelect openPopup={openPopup}/>
             <Souses openPopup={openPopup} />
             <Main openPopup={openPopup} />
-            <ModalInfoIngredients active={modalActive} setActive={setModalActive}/>
+            <ModalInfoIngredients/>
         </section>
     )
 }

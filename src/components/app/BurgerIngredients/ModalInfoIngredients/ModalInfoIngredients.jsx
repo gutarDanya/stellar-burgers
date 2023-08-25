@@ -3,18 +3,20 @@ import React from 'react';
 import styles from './ModalInfoIngredients.module.css';
 import { data } from '../../../../utils/data';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-
+import { CLOSE_MODAL_WINDOW } from '../../../services/actions/orderedIngredientsAction';
 import InfoOfIngridient from './InfoOfIngredient/InfoOfIngredinet';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeCurrentIngredientGenerator } from '../../../services/actions/currentIngredientsToModalAction';
 
-const ModalInfoIngredients = ({ active, setActive }) => {
+const ModalInfoIngredients = () => {
 
     const dispatch = useDispatch();
 
+    const active = useSelector(state => state.orderedIngredientsReducer.modalOpened)
+
     const closePopup = () => {
-        setActive(false)
         dispatch(removeCurrentIngredientGenerator())
+        dispatch({type: CLOSE_MODAL_WINDOW})
     }
 
     const usedIngredient = useSelector(store => store.currentIngredientReducer.currentIngredient)
