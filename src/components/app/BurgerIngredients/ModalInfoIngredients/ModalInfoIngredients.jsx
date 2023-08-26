@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './ModalInfoIngredients.module.css';
 import { data } from '../../../../utils/data';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { CLOSE_MODAL_WINDOW } from '../../../services/actions/orderedIngredientsAction';
+import { CLOSE_INFO_MODAL_WINDOW } from '../../../services/actions/currentIngredientsToModalAction';
 import InfoOfIngridient from './InfoOfIngredient/InfoOfIngredinet';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeCurrentIngredientGenerator } from '../../../services/actions/currentIngredientsToModalAction';
@@ -12,14 +12,15 @@ const ModalInfoIngredients = () => {
 
     const dispatch = useDispatch();
 
-    const active = useSelector(state => state.orderedIngredientsReducer.modalOpened)
+    const active = useSelector(state => state.currentIngredientReducer.modalWindowOpened)
 
     const closePopup = () => {
-        dispatch(removeCurrentIngredientGenerator())
-        dispatch({type: CLOSE_MODAL_WINDOW})
+        dispatch({type: CLOSE_INFO_MODAL_WINDOW})
     }
 
     const usedIngredient = useSelector(store => store.currentIngredientReducer.currentIngredient)
+
+    console.log(usedIngredient)
     return (
         <div className={active
             ? styles.modal

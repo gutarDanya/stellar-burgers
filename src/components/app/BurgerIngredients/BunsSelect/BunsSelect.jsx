@@ -7,16 +7,16 @@ import { useDrag } from 'react-dnd';
 
 const BunsSelect = (({openPopup}) => {
 
-    const ingredients = useSelector(state => state.apiReducer.ingredientData[0])
+    const ingredients = useSelector(state => state.apiReducer.ingredientData)
 
     return(
         <section>
             <h3 className={styles.title}>Булки</h3>
             <nav className={styles.container}>
-            {ingredients && ingredients.length > 0 && ingredients.map((ingredient) => {
+            {ingredients && ingredients.length > 0 && ingredients.map((ingredient, i) => {
                 if (ingredient.type === 'bun') {
                     return (
-                        <Bun ingredient={ingredient} openPopup={openPopup}/>
+                        <Bun ingredient={ingredient} openPopup={openPopup} key={i}/>
                     )
                 }
             })}

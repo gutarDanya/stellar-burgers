@@ -25,7 +25,7 @@ export const apiReducer = (state = initialState, action) => {
                 ...state,
                 getIngredientsRequest: false,
                 getIngredientsFailed: false,
-                ingredientData: [...state.ingredientData, action.payload]
+                ingredientData: action.payload
             }
         }
         case LOAD_START_INGREDIENTS_DATA_FAILED: {

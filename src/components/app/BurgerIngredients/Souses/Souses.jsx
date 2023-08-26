@@ -9,16 +9,17 @@ import { useSelector } from 'react-redux';
 
 function Souses ({openPopup}) {
 
-    const ingredients = useSelector(store => store.apiReducer.ingredientData[0])
+    const ingredients = useSelector(store => store.apiReducer.ingredientData)
+
 
     return (
         <section>
             <h3 className={styles.title}>Соусы</h3>
             <nav className={styles.container}>
-            {ingredients && ingredients.length > 0 && ingredients.map((souses) => {
+            {ingredients && ingredients.length > 0 && ingredients.map((souses, i) => {
                 if (souses.type === 'sauce') {
                     return (
-                       <Souce souses={souses} openPopup={openPopup} />
+                       <Souce souses={souses} openPopup={openPopup} key={i}/>
                     )
                 }
             })}

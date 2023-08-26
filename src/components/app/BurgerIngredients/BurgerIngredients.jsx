@@ -8,11 +8,11 @@ import Souses from './Souses/Souses';
 import Main from './Main/Main';
 import ModalInfoIngredients from './ModalInfoIngredients/ModalInfoIngredients';
 import { useDispatch, useSelector } from 'react-redux';
-import { GET_CURRENT_INGREDIENT_TO_MODAL, getCurrentIngredientGenerator } from '../../services/actions/currentIngredientsToModalAction';
+import { GET_CURRENT_INGREDIENT_TO_MODAL, OPEN_INFO_MODAL_WINDOW, getCurrentIngredientGenerator } from '../../services/actions/currentIngredientsToModalAction';
 import { useDrag } from 'react-dnd';
-import { OPEN_MODAL_WINDOW } from '../../services/actions/orderedIngredientsAction';
+import { openInfoModalWindow } from '../../services/actions/currentIngredientsToModalAction';
 
-function BurgerIngredients ({ingredients}) {
+function BurgerIngredients () {
 
 
     const [modalActive, setModalActive] = React.useState(false);
@@ -36,22 +36,19 @@ function BurgerIngredients ({ingredients}) {
 
 
     const openPopup = (ingredient) => {
-        dispatch({type: GET_CURRENT_INGREDIENT_TO_MODAL, payload: ingredient})
-        dispatch({type: OPEN_MODAL_WINDOW})
+        dispatch({type: OPEN_INFO_MODAL_WINDOW, payload: ingredient})
     }
-
-    const currentIngredient = useSelector(store => store.currentIngredientReducer.currentIngredient);
-
-    console.log(currentIngredient);
 
 
     return (
         <section className={styles.burgerIngredients}>
             <h1 className={styles.text}>Соберите бургер</h1>
             <Navigation />
+            <div className={styles.ingredients}>
             <BunsSelect openPopup={openPopup}/>
             <Souses openPopup={openPopup} />
             <Main openPopup={openPopup} />
+            </div>
             <ModalInfoIngredients/>
         </section>
     )

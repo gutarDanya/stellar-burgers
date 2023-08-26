@@ -8,15 +8,16 @@ import { useDrag } from 'react-dnd';
 export const Bun = ({ ingredient, openPopup }) => {
 
     const [, ref] = useDrag({
-        type: 'bun',
-        item: ingredient.id
+        type: 'ingredient',
+        item: ingredient._id
     })
 
 
     return (
         <div className={styles.ingredient}
             onClick={() => openPopup(ingredient)}
-            ref={ref}>
+            ref={ref}
+            key={ingredient._id}>
             {ingredient.name === 'Краторная булка N-200i'
                 ? <Counter count={1} size='default' extraClass='m-1' />
                 : null}

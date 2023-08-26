@@ -7,37 +7,57 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getStartConstructorElementsGenerator } from '../services/actions/ingredientsConstructorAction';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useDrop } from 'react-dnd';
+import { ADDED_INGREDIENT_TO_CONSTRUCTOR } from '../services/actions/ingredientsConstructorAction';
 
 function BurgerConstructor() {
 
     const dispatch = useDispatch();
 
-    const AllIngredients = useSelector(state => state.apiReducer.ingredientData[0]);
-
-    const consructorElements = useSelector(state => state.constructorReducer.constructorElements[0]);
+    const AllIngredients = useSelector(state => state.apiReducer.ingredientData);
 
 
-useEffect(() => {
-dispatch(getStartConstructorElementsGenerator([AllIngredients[0], AllIngredients[8], AllIngredients[5], AllIngredients[11], AllIngredients[10], AllIngredients[10]]))
-}, [])
+    const consructorElements = useSelector(state => state.constructorReducer.constructorElements);
+
+    console.log(AllIngredients)
+
+    const [drop, ref] = useDrop({
+        accept: 'ingredient',
+        drop(itemId) {
+            dispatch({
+                type: ADDED_INGREDIENT_TO_CONSTRUCTOR,
+            })
+        }
+    })
+
+
+
+// useEffect(() => {
+// dispatch(getStartConstructorElementsGenerator())
+// }, [])
 
 
     return (
         <nav className={styles.container}>
-            <div className={styles.ingredients}>
-                {consructorElements && consructorElements.length > 0 && consructorElements.map((ingredient) => {
+            <div className={styles.ingredients}
+            ref={ref}>
+                {consructorElements && consructorElements.length > 0 && consructorElements.map((ingredient, i) => {
                     if (ingredient.type === 'souce' || ingredient.type === 'main') {
                         return (
+                            <div className={styles.ingredient}
+                            key={i}>
+                                <DragIcon />
                             <ConstructorElement
-                             isLocked={true}
                              text={ingredient.name}
                              price={ingredient.price}
                              thumbnail={ingredient.image}
                              />
+                             </div>
                         )
                     } else if (ingredient.type === 'bun') {
                         return (
-                            <div className={styles.ingredient}>
+                            <div className={styles.ingredient}
+                            key={i}>
                             <DragIcon />
                             <ConstructorElement
                             type='top'
