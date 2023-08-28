@@ -9,7 +9,11 @@ export const Souce = ({souses, openPopup}) => {
 
     const [, ref] = useDrag({
         type: 'ingredient',
-        item: souses._id
+        item: {
+            ingredient: souses,
+            id: souses._id,
+            type: souses.type
+        }
     })
 
     return(

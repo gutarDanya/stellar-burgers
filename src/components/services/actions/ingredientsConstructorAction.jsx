@@ -1,11 +1,17 @@
-export const GET_START_CONSRTUCTOR_INGREDIENTS = 'GET_START_CONSRTUCTOR_INGREDIENTS';
-export const ADDED_INGREDIENT_TO_CONSTRUCTOR = 'ADDED_INGREDIENT_TO_CONSTRUCTOR';
+
 export const REMOVE_INGREDIENT_FROM_CONSTRUCTOR = 'REMOVE_INGREDIENT_FROM_CONSTRUCTOR';
+export const ADD_BUN_TO_CONSTRUCTOR = 'ADD_BUN_TO_CONSTRUCTOR';
+export const ADD_MAIN_TO_CONSTRUCTOR = 'ADD_MAIN_TO_CONSTRUCTOR';
 
-export const getStartConstructorElementsGenerator= (startingredients) => {
-    return {type: GET_START_CONSRTUCTOR_INGREDIENTS, payload: startingredients}
+export const addBun = (bun) => {
+    return ({type: ADD_BUN_TO_CONSTRUCTOR, payload: bun })
 }
 
-export const addConstructorElementGenerator = (ingredient) => {
-    return {type: ADDED_INGREDIENT_TO_CONSTRUCTOR, payload: ingredient}
+export const addMainIngredient = (ingredient) => {
+    return ({type: ADD_MAIN_TO_CONSTRUCTOR, payload: ingredient})
 }
+
+export const removeIngredient = (ingredient) => {
+    return ({type: REMOVE_INGREDIENT_FROM_CONSTRUCTOR, payload: ingredient})
+}
+

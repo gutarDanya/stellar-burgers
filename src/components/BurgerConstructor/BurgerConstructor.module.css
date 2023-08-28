@@ -13,15 +13,17 @@
 .ingredients {
     max-height: 656px;
     height: 656px;
+    min-width: 450px;
     display: grid;
     row-gap: 10px;
-    justify-items: flex-end;
+    align-items: center;
+    justify-items: center;
     text-wrap: wrap;
 }
 
 .ingredient {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }

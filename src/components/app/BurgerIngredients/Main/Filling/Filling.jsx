@@ -9,7 +9,11 @@ export const Filling = ({ filling, openPopup }) => {
 
     const [, ref] = useDrag({
         type: 'ingredient',
-        item: filling._id
+        item: {
+            ingredient: filling,
+            id: filling._id,
+            type: filling.type
+        }
     })
     return (
         <div className={styles.ingredient}
