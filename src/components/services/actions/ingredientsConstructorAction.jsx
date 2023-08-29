@@ -14,4 +14,3 @@ export const addMainIngredient = (ingredient) => {
 export const removeIngredient = (ingredient) => {
     return ({type: REMOVE_INGREDIENT_FROM_CONSTRUCTOR, payload: ingredient})
 }
-

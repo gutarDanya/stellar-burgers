@@ -21,8 +21,11 @@ export const Souce = ({souses, openPopup}) => {
         onClick={() => openPopup(souses)}
         ref={ref}
         key={souses._id}>
-            {souses.name === 'Соус традиционный галактический'
+            {/* {souses.name === 'Соус традиционный галактический'
             ? <Counter count={1} size='default' extraClass='m-1' />
+            : null} */}
+            {souses.__v !== 0
+            ? <Counter count={souses.__v} size='default' extraClass='m-1'/>
             : null}
             <img src={souses.image} alt={souses.alt} />
             <h4 className={styles.price}>{souses.price} <CurrencyIcon /></h4>

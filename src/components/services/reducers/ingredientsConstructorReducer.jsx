@@ -6,14 +6,11 @@ import {
 import { data } from '../../../utils/data';
 
 const initialState = {
-bun: data[0],
-main: [
-    data[1],
-    data[2],
-    data[3],
-    data[4]
-]
+bun: [],
+main: []
 }
+
+//Увеличь занчение коунт при перетаскивании ингредиента
 
 export const constructorReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -32,7 +29,7 @@ export const constructorReducer = (state = initialState, action) => {
         case REMOVE_INGREDIENT_FROM_CONSTRUCTOR: {
             return {
                 ...state,
-                main: state.main.filter((ingredient) => ingredient._id === action.payload._id)
+                main: state.main.filter((ingredient) => ingredient._id !== action.payload._id)
             }
         }
         default: return state

@@ -2,7 +2,9 @@ import {
     LOAD_START_INGREDIENTS_DATA,
     LOAD_START_INGREDIENTS_DATA_REQUEST,
     LOAD_START_INGREDIENTS_DATA_SUCCES,
-    LOAD_START_INGREDIENTS_DATA_FAILED
+    LOAD_START_INGREDIENTS_DATA_FAILED,
+    ADD_NUMBER_TO_COUNT,
+    REMOVE_NUMBER_FROM_COUNT
 } from '../actions/apiAction'
 
 const initialState = {
@@ -33,6 +35,24 @@ export const apiReducer = (state = initialState, action) => {
                 ...state,
                 getIngredientsFailed: true,
                 getIngredientsRequest: false
+            }
+        }
+        case ADD_NUMBER_TO_COUNT: {
+            return {
+                ...state,
+                ingredientData: state.ingredientData.map((ingredient) => ingredient._id === action.payload._id
+                ? {...ingredient,
+                     __v: ingredient.__v + 1}
+                : ingredient)
+            }
+        }
+        case REMOVE_NUMBER_FROM_COUNT: {
+            return {
+                ...state,
+                ingredientData: state.ingredientData.map((ingredient) => ingredient._id === action.payload._id
+                ? {...ingredient,
+                __v: ingredient.__v - 1}
+                :ingredient)
             }
         }
         default: return state

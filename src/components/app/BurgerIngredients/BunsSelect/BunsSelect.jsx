@@ -7,7 +7,7 @@ import { useDrag } from 'react-dnd';
 
 const BunsSelect = (({openPopup}) => {
 
-    const ingredients = useSelector(state => state.apiReducer.ingredientData)
+    const ingredients = useSelector(state => state.apiReducer.ingredientData);
 
     return(
         <section>

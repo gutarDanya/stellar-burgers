@@ -12,10 +12,15 @@ import { ADDED_INGREDIENT_TO_CONSTRUCTOR } from '../services/actions/ingredients
 import { addBun, addMainIngredient } from '../services/actions/ingredientsConstructorAction';
 import { removeIngredient } from '../services/actions/ingredientsConstructorAction';
 import { IngredientsConstructor } from './IngredientsConstructor/IngredientsConstructor';
+import { addCount } from '../services/actions/apiAction';
 
 function BurgerConstructor() {
 
     const dispatch = useDispatch();
+
+    const bun = useSelector(state => state.constructorReducer.bun);
+    const main = useSelector(state => state.constructorReducer.main);
+
 
 
     const [, ref] = useDrop({
@@ -23,8 +28,10 @@ function BurgerConstructor() {
         drop(item) {
             if (item.type === 'bun') {
                 dispatch(addBun(item.ingredient))
+                dispatch(addCount(item.ingredient))
             } else {
                 dispatch(addMainIngredient(item.ingredient))
+                dispatch(addCount(item.ingredient))
             }
         }
     })
@@ -34,7 +41,7 @@ function BurgerConstructor() {
         <nav className={styles.container}>
             <div className={styles.ingredients}
                 ref={ref}>
-                    <IngredientsConstructor />
+                    <IngredientsConstructor bun={bun} main={main}/>
             </div>
             <InfoOfOrder />
         </nav>

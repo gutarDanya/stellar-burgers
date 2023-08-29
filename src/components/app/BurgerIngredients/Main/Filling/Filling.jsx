@@ -20,11 +20,14 @@ export const Filling = ({ filling, openPopup }) => {
             onClick={() => openPopup(filling)}
             ref={ref}
             key={filling._id}>
-            {filling.name === 'Мясо бессмертных моллюсков Protostomia' || filling.name === 'Плоды Фалленианского дерева'
-                ? <Counter count={1} size="default" extraClass="m-1" />
+            {/* {filling.name === 'Мясо бессмертных моллюсков Protostomia' || filling.name === 'Плоды Фалленианского дерева'
+                ? <Counter count={filling.__v} size="default" extraClass="m-1" />
                 : null}
             {filling.name === 'Хрустящие минеральные кольца'
-                ? <Counter count={2} size='default' extraClass='m-1' />
+                ? <Counter count={filling.__v} size='default' extraClass='m-1' />
+                : null} */}
+                {filling.__v !== 0 
+                ? <Counter count={filling.__v} size='default' extraClass='m-1'/>
                 : null}
             <img src={filling.image} alt={filling.alt} />
             <h4 className={styles.price}>{filling.price} <CurrencyIcon /></h4>
