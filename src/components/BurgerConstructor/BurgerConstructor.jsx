@@ -10,7 +10,7 @@ import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDrag, useDrop } from 'react-dnd';
 import { ADDED_INGREDIENT_TO_CONSTRUCTOR } from '../services/actions/ingredientsConstructorAction';
 import { addBun, addMainIngredient } from '../services/actions/ingredientsConstructorAction';
-import { removeIngredient } from '../services/actions/ingredientsConstructorAction';
+import { getAllIngredients } from '../services/actions/ingredientsConstructorAction';
 import { IngredientsConstructor } from './IngredientsConstructor/IngredientsConstructor';
 import { addCount } from '../services/actions/apiAction';
 
@@ -29,9 +29,11 @@ function BurgerConstructor() {
             if (item.type === 'bun') {
                 dispatch(addBun(item.ingredient))
                 dispatch(addCount(item.ingredient))
+                dispatch(getAllIngredients(item.ingredient))
             } else {
                 dispatch(addMainIngredient(item.ingredient))
                 dispatch(addCount(item.ingredient))
+                dispatch(getAllIngredients(item.ingredient))
             }
         }
     })

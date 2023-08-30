@@ -19,8 +19,6 @@ const ModalInfoIngredients = () => {
     }
 
     const usedIngredient = useSelector(store => store.currentIngredientReducer.currentIngredient)
-
-    console.log(usedIngredient)
     return (
         <div className={active
             ? styles.modal

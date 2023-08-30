@@ -12,7 +12,9 @@ function ModalInfoOfOrder () {
 
     const dispatch = useDispatch();
 
-    const active = useSelector(state => state.orderedIngredientsReducer.modalOpened)
+    const active = useSelector(state => state.orderedIngredientsReducer.modalOpened);
+
+    const order = useSelector(state => state.orderedIngredientsReducer.order)
 
     function closePopupByKey (evt) {
         if (evt.key === 'Escape') {
@@ -40,7 +42,11 @@ function ModalInfoOfOrder () {
             <section className={styles.popup}
             onClick={e => e.stopPropagation()}>
                 <div className={styles.mark}><CloseIcon onClick={closePopup}/></div>
-                <h2 className='text text_type_digits-large'>034536</h2>
+                <h2 className='text text_type_digits-large'>{
+                    order.success === true
+                    ? order.order.number
+                    : 1488
+                }</h2>
                 <p className={styles.title}>инетификатор заказа</p>
                 <img src={done} alt='картинка' 
                 className={styles.picture}/>

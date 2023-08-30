@@ -3,20 +3,12 @@ import styles from './IngredientsConstructor.module.css';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeIngredient } from '../../services/actions/ingredientsConstructorAction';
-import { useDrag } from 'react-dnd';
+import { useDrag, useDrop } from 'react-dnd';
 import { removeCount } from '../../services/actions/apiAction';
 
 
 
 export const IngredientsConstructor = ({ main, bun }) => {
-
-    const [, DragRef] = useDrag({
-        type: 'constructorElem',
-        item: {
-            main, bun
-        }
-    })
-
     const dispatch = useDispatch();
 
 
@@ -25,6 +17,8 @@ export const IngredientsConstructor = ({ main, bun }) => {
         dispatch(removeCount(ingredient))
         // console.log(ingredient)
     }
+
+    const [, sortDrag] = useDrag
 
     return (<>
         {bun && bun.length !== 0
