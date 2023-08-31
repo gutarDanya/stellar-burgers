@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeIngredient } from '../../services/actions/ingredientsConstructorAction';
 import { useDrag, useDrop } from 'react-dnd';
 import { removeCount } from '../../services/actions/apiAction';
+import { MainIngredient } from './MainIngredient/MainIngredinet';
 
 
 
@@ -15,10 +16,8 @@ export const IngredientsConstructor = ({ main, bun }) => {
     const deleteIngredient = (ingredient) => {
         dispatch(removeIngredient(ingredient))
         dispatch(removeCount(ingredient))
-        // console.log(ingredient)
     }
 
-    const [, sortDrag] = useDrag
 
     return (<>
         {bun && bun.length !== 0
@@ -32,17 +31,7 @@ export const IngredientsConstructor = ({ main, bun }) => {
             : null}
         {main && main.length > 0 && main.map((ingredient, i) => {
             return (
-                <div className={styles.ingredient}
-                    key={ingredient._id}>
-                    <DragIcon />
-                    <ConstructorElement
-                        text={ingredient.name}
-                        price={ingredient.price}
-                        isLocked={false}
-                        thumbnail={ingredient.image}
-                        handleClose={() => deleteIngredient(ingredient)}
-                    />
-                </div>
+                <MainIngredient ingredient={ingredient} deleteIngredient={deleteIngredient} key={i} />
             )
         })}
         {bun && bun.length !== 0

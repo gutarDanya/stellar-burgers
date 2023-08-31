@@ -13,6 +13,7 @@ import { addBun, addMainIngredient } from '../services/actions/ingredientsConstr
 import { getAllIngredients } from '../services/actions/ingredientsConstructorAction';
 import { IngredientsConstructor } from './IngredientsConstructor/IngredientsConstructor';
 import { addCount } from '../services/actions/apiAction';
+import { sortingIngredientsGenerator } from '../services/actions/ingredientsConstructorAction';
 
 function BurgerConstructor() {
 
@@ -26,15 +27,17 @@ function BurgerConstructor() {
     const [, ref] = useDrop({
         accept: 'ingredient',
         drop(item) {
-            if (item.type === 'bun') {
+            if (item.ingredient.type === 'bun') {
                 dispatch(addBun(item.ingredient))
                 dispatch(addCount(item.ingredient))
                 dispatch(getAllIngredients(item.ingredient))
+
             } else {
                 dispatch(addMainIngredient(item.ingredient))
                 dispatch(addCount(item.ingredient))
                 dispatch(getAllIngredients(item.ingredient))
             }
+            console.log(item)
         }
     })
 

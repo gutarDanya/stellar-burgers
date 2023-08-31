@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 
 import styles from './BurgerIngredients.module.css'
 
@@ -14,25 +14,17 @@ import { openInfoModalWindow } from '../../services/actions/currentIngredientsTo
 
 function BurgerIngredients () {
 
+    const scroll = useSelector((state) => state.scrollReducer.scroll)
+
+    const bunsRef = useRef();
+    const saouceRef = useRef();
+    const mainRef = useRef();
+    const refScroll = useRef();
 
     const [modalActive, setModalActive] = React.useState(false);
 
     const dispatch = useDispatch();
 
-    function closePopupByKey (evt) {
-        if (evt.key === 'Escape') {
-            setModalActive(false)
-        }
-    }
-
-    React.useEffect(() => {
-        document.addEventListener('keydown', closePopupByKey);
-
-        return () => {
-            document.removeEventListener('keydown', closePopupByKey)
-        };
-
-    }, [])
 
 
     const openPopup = (ingredient) => {

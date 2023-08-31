@@ -10,21 +10,23 @@ import { sendOrder } from '../../services/reducers/orderedIngredientsReducer';
 
 function InfoOfOrder() {
 
-    const ingredients = useSelector(state => state.constructorReducer.allIngredients)
-
-    const totalPrice = ingredients.reduce((acc, ingredient) =>
-        ingredient.type === 'bun'
-            ? ingredient.price * 2 + acc
-            : ingredient.price + acc, 0)
-
-
-
-    const dispatch = useDispatch();
+    const ingredients = useSelector(state => state.constructorReducer.allIngredients);
 
     const openPopup = () => {
         dispatch({ type: OPEN_MODAL_WINDOW });
         dispatch(sendOrder(ingredients));
     }
+
+    const totalPrice = ingredients.reduce((acc, ingredient) =>
+        ingredient.type === 'bun'
+            ? ingredient.price * 2 + acc
+            : ingredient.price + acc, 0)
+    
+
+
+
+    const dispatch = useDispatch();
+
 
     return (
         <div className={styles.container}>

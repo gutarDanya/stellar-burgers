@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import styles from './ModalInfoIngredients.module.css';
 import { data } from '../../../../utils/data';
@@ -17,6 +17,21 @@ const ModalInfoIngredients = () => {
     const closePopup = () => {
         dispatch({type: CLOSE_INFO_MODAL_WINDOW})
     }
+
+    function closePopupByKey (evt) {
+        if (evt.key === 'Escape') {
+            dispatch({type: CLOSE_INFO_MODAL_WINDOW})
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', closePopupByKey);
+
+        return () => {
+            document.removeEventListener('keydown', closePopupByKey)
+        };
+
+    }, [])
 
     const usedIngredient = useSelector(store => store.currentIngredientReducer.currentIngredient)
     return (
