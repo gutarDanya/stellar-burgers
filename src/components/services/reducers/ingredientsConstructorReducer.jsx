@@ -44,7 +44,7 @@ export const constructorReducer = (state = initialState, action) => {
             }
         }
         case SORTING_INGREDIENTS: { 
-            console.log(action.payload)
+            // console.log(action.payload)
            const {draggedIngredient, targetIngredient} = action.payload;
            let draggedIngredientIndex = state.main.findIndex((ingredient) => ingredient._id === draggedIngredient._id);
            const targetIngredientIndex = state.main.findIndex((ingredient) => ingredient._id === targetIngredient._id);

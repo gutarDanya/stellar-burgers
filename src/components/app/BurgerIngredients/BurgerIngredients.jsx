@@ -13,16 +13,6 @@ import { useDrag } from 'react-dnd';
 import { openInfoModalWindow } from '../../services/actions/currentIngredientsToModalAction';
 
 function BurgerIngredients () {
-
-    const scroll = useSelector((state) => state.scrollReducer.scroll)
-
-    const bunsRef = useRef();
-    const saouceRef = useRef();
-    const mainRef = useRef();
-    const refScroll = useRef();
-
-    const [modalActive, setModalActive] = React.useState(false);
-
     const dispatch = useDispatch();
 
 
